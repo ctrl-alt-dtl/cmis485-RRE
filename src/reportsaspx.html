@@ -1,0 +1,93 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Reports.aspx</title>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shBrushXml.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shBrushCSharp.js"></script>
+    <link type="text/css" rel="Stylesheet" href="../syntaxhighlighter/styles/shCore.css" />
+    <link type="text/css" rel="Stylesheet" href="../syntaxhighlighter/styles/shThemeDefault.css" />
+</head>
+<body>
+<script type="text/javascript">    SyntaxHighlighter.all(); </script>
+<pre class="brush:html;">
+&lt%@ Page Language="C#" AutoEventWireup="true" CodeFile="Reports.aspx.cs" Inherits="Reports" %&gt
+
+&lt!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt
+
+&lthtml xmlns="http://www.w3.org/1999/xhtml"&gt
+&lthead runat="server"&gt
+    &lttitle&gtREPORTS&lt/title&gt
+    &ltlink rel="Stylesheet" type="text/css" href="StyleSheet.css" /&gt
+&lt/head&gt
+&ltbody&gt
+    &ltform id="form1" runat="server"&gt
+    &ltdiv id="menu" style="height:500px;width:200px;float:left;margin-bottom:100px;"&gt
+    &ltasp:HyperLink ID="Home" runat="server" Height="50px" Width="200px" ImageUrl="img/home.png" NavigateUrl="finalproject.html"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="SelectLink" runat="server" Height="50px" Width="200px" ImageUrl="img/select.png" NavigateUrl="Select.aspx"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="InsertLink" runat="server" Height="50px" Width="200px" ImageUrl="img/insert.png" NavigateUrl="Insert.aspx"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="DeleteLink" runat="server" Height="50px" Width="200px" ImageUrl="img/delete.png" NavigateUrl="Delete.aspx"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="UpdateLink" runat="server" Height="50px" Width="200px" ImageUrl="img/update.png" NavigateUrl="Update.aspx"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="ReportLink" runat="server" Height="50px" Width="200px" ImageUrl="img/reports.png" NavigateUrl="Reports.aspx"&gt&lt/asp:HyperLink&gt
+    &lt/div&gt
+    &ltbr /&gt
+    &ltdiv id="homeDiv" style="height:750px;width:175px;float:left;margin-left:20px;margin-bottom:100px;"&gt
+    &ltasp:SqlDataSource ID="saleDataSource" runat="server" 
+        ConnectionString="Data Source=nova;Persist Security Info=True;User ID=#######;Password=#######;Unicode=True" 
+        providerName="System.Data.OracleClient"  
+        SelectCommand="SELECT * FROM &quot;SALE&quot;"&gt
+    &lt/asp:SqlDataSource&gt
+
+    &ltasp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
+        DataSourceID="saleDataSource" style="margin-bottom: 0px" BackColor="White" BorderColor="#CCCCCC" 
+        BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" 
+        GridLines="Horizontal" Width="350px" onrowdatabound="GridView1_RowDataBound" 
+            DataKeyNames="SALEID" AllowPaging="True" ShowFooter="true"&gt
+        &ltColumns&gt
+            &ltasp:TemplateField&gt
+            &ltFooterTemplate&gt
+                    &ltasp:Label ID="lbltxttotal" runat="server" Text="Totals:"/&gt
+            &lt/FooterTemplate&gt
+            &lt/asp:TemplateField&gt
+            &ltasp:TemplateField HeaderText="Total Amount Sold" HeaderStyle-Width="100px"&gt
+            &ltItemTemplate&gt
+                
+            &lt/ItemTemplate&gt
+            &ltFooterTemplate&gt
+                &ltasp:Label ID="lblTotal" runat="server"/&gt
+            &lt/FooterTemplate&gt
+            &lt/asp:TemplateField&gt
+            &ltasp:TemplateField HeaderText="Average Amount Sold" HeaderStyle-Width="100px"&gt
+            &ltItemTemplate&gt
+                &ltasp:Label ID="lblamount" runat="server" /&gt
+            &lt/ItemTemplate&gt
+            &ltFooterTemplate&gt
+                &ltasp:Label ID="lblAverage" runat="server"/&gt
+            &lt/FooterTemplate&gt
+            &lt/asp:TemplateField&gt
+            &ltasp:TemplateField HeaderText="Total Homes Sold" HeaderStyle-Width="100px"&gt
+            &ltItemTemplate&gt
+                &ltasp:Label ID="lblamount" runat="server" /&gt
+            &lt/ItemTemplate&gt
+            &ltFooterTemplate&gt
+                &ltasp:Label ID="lblHome" runat="server" /&gt
+            &lt/FooterTemplate&gt
+            &lt/asp:TemplateField&gt
+        &lt/Columns&gt
+        &ltFooterStyle BackColor="#CCCC99" ForeColor="Black" /&gt
+        &ltHeaderStyle BackColor="#CC6600" Font-Bold="True" ForeColor="White" /&gt
+        &ltPagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" /&gt
+        &ltSelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" /&gt
+    &lt/asp:GridView&gt  &ltbr /&gt
+    &lt/div&gt
+  
+    &lt/form&gt
+&lt/body&gt
+&lt/html&gt
+
+
+
+</pre>
+</body>
+</html>

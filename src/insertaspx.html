@@ -1,0 +1,197 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Insert.aspx</title>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shBrushXml.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shBrushCSharp.js"></script>
+    <link type="text/css" rel="Stylesheet" href="../syntaxhighlighter/styles/shCore.css" />
+    <link type="text/css" rel="Stylesheet" href="../syntaxhighlighter/styles/shThemeDefault.css" />
+</head>
+<body>
+<script type="text/javascript">    SyntaxHighlighter.all(); </script>
+<pre class="brush:html;">
+&lt%@ Page Language="C#" AutoEventWireup="true" CodeFile="Insert.aspx.cs" Inherits="Insert" %&gt
+
+&lt!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt
+
+&lthtml xmlns="http://www.w3.org/1999/xhtml"&gt
+&lthead runat="server"&gt
+    &lttitle&gtINSERT INTO Tables&lt/title&gt
+    &ltlink rel="Stylesheet" type="text/css" href="StyleSheet.css" /&gt
+&lt/head&gt
+&ltbody&gt
+&ltdiv&gt
+&lt%-- Use "nova" instead of "acad" --%&gt
+    &ltform id="form1" runat="server"&gt 
+    &ltdiv id="menu" style="height:500px;width:200px;float:left;margin-bottom:100px;"&gt
+    &ltasp:HyperLink ID="Home" runat="server" Height="50px" Width="200px" ImageUrl="img/home.png" NavigateUrl="finalproject.html"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="SelectLink" runat="server" Height="50px" Width="200px" ImageUrl="img/select.png" NavigateUrl="Select.aspx"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="InsertLink" runat="server" Height="50px" Width="200px" ImageUrl="img/insert.png" NavigateUrl="Insert.aspx"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="DeleteLink" runat="server" Height="50px" Width="200px" ImageUrl="img/delete.png" NavigateUrl="Delete.aspx"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="UpdateLink" runat="server" Height="50px" Width="200px" ImageUrl="img/update.png" NavigateUrl="Update.aspx"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="ReportLink" runat="server" Height="50px" Width="200px" ImageUrl="img/reports.png" NavigateUrl="Reports.aspx"&gt&lt/asp:HyperLink&gt
+    &lt/div&gt
+
+    &lt%-- New Code --%&gt
+    &ltdiv id="homeDiv" style="height:750px;width:175px;float:left;margin-left:10px;margin-bottom:100px;"&gt
+    &ltb&gtSelect One:&lt/b&gt
+
+    &lt%-- Home Insert --%&gt
+    &ltasp:RadioButton ID="homeRdBtn" Text="Homes" runat="server" GroupName="insertRadio" oncheckedchanged="homeRdBtn_CheckedChanged" AutoPostBack="true"/&gt  &ltbr /&gt
+    Home ID: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator1" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="homeIdTxtBox" ValidationGroup="homeGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="homeIdTxtBox" runat="server" Width="150px" MaxLength="9"/&gt &ltbr /&gt
+    Lot Size (Acres): 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator2" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="lotSzTxtBox" ValidationGroup="homeGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="lotSzTxtBox" runat="server" Width="150px" MaxLength="2"/&gt &ltbr /&gt
+    Location: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator3" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="locateTxtBox" ValidationGroup="homeGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="locateTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Model ID: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator4" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="modelIdTxtBox" ValidationGroup="homeGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="modelIdTxtBox" runat="server" Width="150px" MaxLength="10"/&gt &ltbr /&gt
+    Purchase Price: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator5" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="pruchPriceTxtBox" ValidationGroup="homeGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="pruchPriceTxtBox" runat="server" Width="150px" MaxLength="19"/&gt &ltbr /&gt
+    Street Address: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator6" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="stAddyTxtBox" ValidationGroup="homeGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="stAddyTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    City: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator7" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="homeCtyTxtBox" ValidationGroup="homeGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="homeCtyTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    State Abbreviation: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator8" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="homeStAbbrTxtBox" ValidationGroup="homeGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="homeStAbbrTxtBox" runat="server" Width="150px" MaxLength="2"/&gt &ltbr /&gt
+    Zip Code: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator9" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="homeZipCodeTxtBox" ValidationGroup="homeGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="homeZipCodeTxtBox" runat="server" Width="150px" MaxLength="5"/&gt &ltbr /&gt
+    &ltbr /&gt
+    &ltasp:Button ID="homeBtnSubmit" runat="server" Text="Submit" OnClick="HomeBtnClick" ValidationGroup="homeGroup" Enabled="false"/&gt &ltbr /&gt
+    &ltp style="font-weight: bold" ID="Result" runat="server"&gt&lt/p&gt
+    &lt/div&gt
+    
+    &lt%-- Customer Insert --%&gt
+    &ltdiv id="custDiv" style="height:750px;width:175px;float:left;margin-left:10px;margin-bottom:100px;"&gt
+    &ltasp:RadioButton ID="custRdBtn" Text="Customer" runat="server" GroupName="insertRadio" oncheckedchanged="custRdBtn_CheckedChanged" AutoPostBack="true"/&gt &ltbr /&gt
+    Customer ID: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator10" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="custIdTxtBox" ValidationGroup="customerGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="custIdTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Last Name: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator11" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="custLastNameTxtBox" ValidationGroup="customerGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="custLastNameTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    First Name: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator12" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="custFirstNameTxtBox" ValidationGroup="customerGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="custFirstNameTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Middle Initial: &ltbr /&gt
+    &ltasp:TextBox ID="custMidInitTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Cell Phone: &ltbr /&gt
+    &ltasp:TextBox ID="custCellPhTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Home Phone: &ltbr /&gt
+    &ltasp:TextBox ID="custHomePhTxtBox" runat="server" Width="150px"/&gt &ltbr /&gt
+    Street Address: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator13" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="custStAddyTxtBox" ValidationGroup="customerGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="custStAddyTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    City: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator14" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="custCityTxtBox" ValidationGroup="customerGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="custCityTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    State Abbreviation: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator15" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="custStAbbrTxtBox" ValidationGroup="customerGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="custStAbbrTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Zip Code: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator16" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="custZipCodeTxtBox" ValidationGroup="customerGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="custZipCodeTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Profession: &ltbr /&gt
+    &ltasp:TextBox ID="custProfessionTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Employer: &ltbr /&gt
+    &ltasp:TextBox ID="custEmployerTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Agent ID: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator17" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="custAgentIdTxtBox" ValidationGroup="customerGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="custAgentIdTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Date of Birth: &ltbr /&gt
+    &ltasp:TextBox ID="custDOBTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Referrer: &ltbr /&gt
+    &ltasp:TextBox ID="custReferrerTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+
+    &ltbr /&gt
+    &ltasp:Button ID="custBtnSubmit" runat="server" Text="Submit" OnClick="CustBtnClick" ValidationGroup="customerGroup" Enabled="false"/&gt &ltbr /&gt
+    &ltp style="font-weight: bold" ID="P1" runat="server"&gt&lt/p&gt
+    &lt/div&gt
+    
+    &lt%-- Agent Insert --%&gt
+    &ltdiv id="agentDiv" style="height:750px;width:175px;float:left;margin-left:10px;margin-bottom:100px;"&gt
+    &ltasp:RadioButton ID="agentRdBtn" Text="Agent" runat="server" 
+            GroupName="insertRadio" oncheckedchanged="agentRdBtn_CheckedChanged" AutoPostBack="true"/&gt &ltbr /&gt
+    Agent ID: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator25" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="agentIdTxtBox" ValidationGroup="agentGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="agentIdTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Last Name: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator26" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="agentLastNameTxtBox" ValidationGroup="agentGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="agentLastNameTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    First Name: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator27" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="agentFirstNameTxtBox" ValidationGroup="agentGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="agentFirstNameTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Middle Inital: &ltbr /&gt
+    &ltasp:TextBox ID="agentMidInitTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Office Phone Number: &ltbr /&gt
+    &ltasp:TextBox ID="agentOfficePhTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Pager: &ltbr /&gt
+    &ltasp:TextBox ID="agentPagerTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Cell Phone Number: &ltbr /&gt
+    &ltasp:TextBox ID="agentCellPhTxtBox" runat="server" Width="150px"/&gt &ltbr /&gt
+    Home Phone Number: &ltbr /&gt
+    &ltasp:TextBox ID="agentHomePhTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Hire Date: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator28" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="agentHireDtTxtBox" ValidationGroup="agentGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="agentHireDtTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Title: &ltbr /&gt
+    &ltasp:TextBox ID="agentTitleTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    
+
+    &ltbr /&gt
+    &ltasp:Button ID="agentBtnSubmit" runat="server" Text="Submit" OnClick="AgentBtnClick" ValidationGroup="agentGroup" Enabled="false"/&gt &ltbr /&gt
+    &ltp style="font-weight: bold" ID="P2" runat="server"&gt&lt/p&gt
+    &lt/div&gt
+
+    &lt%-- Sale Insert --%&gt
+    &ltdiv id="saleDiv" style="height:750px;width:175px;float:left;margin-left:10px;margin-bottom:100px;"&gt
+    &ltasp:RadioButton ID="saleRdBtn" Text="Sale" runat="server"  GroupName="insertRadio" 
+            oncheckedchanged="saleRdBtn_CheckedChanged" AutoPostBack="true"/&gt &ltbr /&gt
+    Sale ID: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator18" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="saleIdTxtBox" ValidationGroup="saleGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="saleIdTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Customer ID: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator19" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="saleCustIdTxtBox" ValidationGroup="saleGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="saleCustIdTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Home ID: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator20" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="saleHomeIdTxtBox" ValidationGroup="saleGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="saleHomeIdTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Contract ID: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator21" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="saleContractIdTxtBox" ValidationGroup="saleGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="saleContractIdTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Agent ID: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator22" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="saleAgentIdTxtBox" ValidationGroup="saleGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="saleAgentIdTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Sale Date: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator23" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="saleDateTxtBox" ValidationGroup="saleGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="saleDateTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    Actual Sale Amount: 
+    &ltasp:RequiredFieldValidator ID="RequiredFieldValidator24" runat="server" ErrorMessage="*" ForeColor="Red" ControlToValidate="saleActualAmountTxtBox" ValidationGroup="saleGroup" /&gt&ltbr /&gt
+    &ltasp:TextBox ID="saleActualAmountTxtBox" runat="server" Width="150px" /&gt &ltbr /&gt
+    &ltbr /&gt
+    &ltasp:Button ID="saleBtnSubmit" runat="server" Text="Submit" OnClick="SaleBtnClick" ValidationGroup="saleGroup" Enabled="false"/&gt &ltbr /&gt
+    &ltp style="font-weight: bold" ID="P3" runat="server"&gt&lt/p&gt
+    &lt/div&gt
+
+    
+    &lt/form&gt
+&lt/div&gt
+&lt/body&gt
+&lt/html&gt
+
+
+
+</pre>
+</body>
+</html>

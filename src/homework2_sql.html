@@ -1,0 +1,117 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Homework2 SQL Script</title>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shBrushXml.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shBrushSql.js"></script>
+    <link type="text/css" rel="Stylesheet" href="../syntaxhighlighter/styles/shCore.css" />
+    <link type="text/css" rel="Stylesheet" href="../syntaxhighlighter/styles/shThemeDefault.css" />
+</head>
+<body>
+<script type="text/javascript">    SyntaxHighlighter.all(); </script>
+<pre class="brush:sql;">
+DROP TABLE AGENT CASCADE CONSTRAINTS;
+DROP TABLE CUSTOMER CASCADE CONSTRAINTS;
+DROP TABLE HOME CASCADE CONSTRAINTS;
+DROP TABLE SALE CASCADE CONSTRAINTS;
+DROP TABLE DUMMY;
+
+CREATE TABLE AGENT
+	(
+	AgentID NUMBER(5) NOT NULL PRIMARY KEY,
+	Office_Phone NUMBER(15),
+	Pager NUMBER(15),
+	Cell_Phone NUMBER(15),
+	Home_Phone NUMBER(15),
+	HireDate DATE NOT NULL,
+	Title VARCHAR(20) NOT NULL,
+	Last_Name VARCHAR(20) NOT NULL,
+	First_Name VARCHAR(20) NOT NULL,
+	Middle_Inital VARCHAR(1)
+	);
+		 
+INSERT INTO AGENT VALUES
+	(35201, 5552211983, 5558879293, NULL, 5557172255, TO_DATE('22-Aug-2001', 'DD-MON-YYYY'), 'Realtor', 'Doug', 'Mark', 'O');
+INSERT INTO AGENT VALUES
+	(35202, 5552211981, 5552204454, 5552223421, 5552123573, TO_DATE('25-Jan-1997', 'DD-MON-YYYY'), 'Realtor', 'Juan', 'Don', 'M');
+INSERT INTO AGENT VALUES
+	(35203, 5552211982, 5552201123, 5552218764, NULL, TO_DATE('22-Sep-1990', 'DD-MON-YYYY'), 'Realtor', 'Samuels', 'Brenda', 'A');
+
+CREATE TABLE CUSTOMER
+	(
+	CustomerID NUMBER(3) NOT NULL PRIMARY KEY,
+	Last_Name VARCHAR(20) NOT NULL,
+	First_Name VARCHAR(20) NOT NULL,
+	Middle_Inital VARCHAR(1),
+	Cell_Phone NUMBER(15),
+	Home_Phone NUMBER(15),
+	Street_Address VARCHAR(30) NOT NULL,
+	City VARCHAR(20) NOT NULL,
+	State_abb CHAR(2) NOT NULL,
+	Zipcode NUMBER(5) NOT NULL,
+	Profession VARCHAR(20),
+	Employer VARCHAR (20),
+	AgentID NUMBER(5) NOT NULL REFERENCES AGENT(AgentID),
+	DOB DATE,
+	Referrer VARCHAR(20)
+	);
+		 
+INSERT INTO CUSTOMER VALUES
+	(201, 'Davis', 'Tom', 'M', 5552219098, 5554430981, '2241 Beach Ln', 'Carlisle', 'PA', 17013, 'Contractor', 'Builders, Inc', 35201, TO_DATE('08-Jun-1979', 'DD-MON-YYYY'), 'Mike D.');
+INSERT INTO CUSTOMER VALUES
+	(202, 'Brenton', 'Sam', 'A', 5552116654, 5552209801, '4172 Valley Dr', 'Weston', 'CO', 81091, 'Teacher', 'Weston Elementary', 35202, TO_DATE('05-Jan-1980', 'DD-MON-YYYY'), 'Tom D.');
+INSERT INTO CUSTOMER VALUES
+	(203, 'Temple', 'Shirley', 'J', 5559629810, 5558171920, '91 Home Ct', 'Rutledge', 'VT', 05701, 'Actress', 'Hollywood', 35203, TO_DATE('23-Apr-1982', 'DD-MON-YYYY'), 'Charles B.');
+INSERT INTO CUSTOMER VALUES
+	(204, 'Johnson', 'Mike', 'N', 5559629812, 5558171921, '424 Dry Run St', 'Rutledge', 'VT', 05701, 'Test Dummy', 'Crash Inc.', 35203, TO_DATE('25-Apr-1901', 'DD-MON-YYYY'), '');
+
+CREATE TABLE HOME
+	(
+	HomeID NUMBER(9) NOT NULL PRIMARY KEY,
+	Lot_Size NUMBER (2) NOT NULL,
+	Location VARCHAR (20) NOT NULL,
+	ModelID NUMBER(4) NOT NULL,
+	Purchase_Price NUMBER(19,4) NOT NULL,
+	Street_Address VARCHAR(30) NOT NULL,
+	City VARCHAR(20) NOT NULL,
+	State_abb CHAR(2) NOT NULL,
+	Zipcode NUMBER(5) NOT NULL
+	);	
+
+INSERT INTO HOME VALUES
+	(432695251, 20, 'Pine View', 2001, 191000, '4521 Crane Ave', 'Weston', 'CO', '81091');
+INSERT INTO HOME VALUES
+	(432695252, 1, 'Fairway Courts', 4431, 87000, '5521 High St', 'Carlisle', 'PA', '17013');
+INSERT INTO HOME VALUES
+	(432695253, 4, 'Dairy Farm', 8892, 92000, '22 Ciesta Ln', 'Boston', 'MA', '02201');
+
+CREATE TABLE SALE
+	(
+	SaleID NUMBER (10) NOT NULL PRIMARY KEY,
+	CustomerID NUMBER(9) NOT NULL REFERENCES CUSTOMER(CustomerID),
+	Sale_Date DATE NOT NULL,
+	HomeID NUMBER (9) NOT NULL REFERENCES HOME(HomeID),
+	ContractID NUMBER(7) NOT NULL UNIQUE,
+	Actual_Amount NUMBER(19,4) NOT NULL,
+	AgentID NUMBER(5) NOT NULL REFERENCES AGENT(AgentID)
+	);
+
+INSERT INTO SALE VALUES
+	(485599034, 203, Trunc(TO_DATE('28-Feb-2013', 'DD-MON-YYYY')), 432695253, 2220554, 90000, 35203);
+INSERT INTO SALE VALUES
+	(1062784300, 201, Trunc(TO_DATE('23-May-2013', 'DD-MON-YYYY')), 432695252, 2220555, 88500, 35201);
+INSERT INTO SALE VALUES
+	(1509005501, 202, Trunc(TO_DATE('30-Apr-2013', 'DD-MON-YYYY')), 432695251, 2220556, 189500, 35202);
+	
+CREATE TABLE DUMMY
+        (DUMMY NUMBER);
+INSERT INTO DUMMY VALUES (0);
+
+COMMIT;
+
+EXIT;
+</pre>
+</body>
+</html>

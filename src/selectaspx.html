@@ -1,0 +1,217 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Select.aspx</title>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shBrushXml.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shBrushCSharp.js"></script>
+    <link type="text/css" rel="Stylesheet" href="../syntaxhighlighter/styles/shCore.css" />
+    <link type="text/css" rel="Stylesheet" href="../syntaxhighlighter/styles/shThemeDefault.css" />
+</head>
+<body>
+<script type="text/javascript">    SyntaxHighlighter.all(); </script>
+<pre class="brush:html;">
+&lt%@ Page Language="C#" AutoEventWireup="true" CodeFile="Select.aspx.cs" Inherits="Select" %&gt
+
+&lt!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"&gt
+
+&lthtml xmlns="http://www.w3.org/1999/xhtml"&gt
+&lthead runat="server"&gt
+    &lttitle&gtSELECT Tables&lt/title&gt
+&ltlink rel="Stylesheet" type="text/css" href="StyleSheet.css" /&gt
+&lt/head&gt
+&ltbody&gt
+    &ltform id="form1" runat="server"&gt
+    
+    &ltdiv id="menu" style="height:500px;width:200px;float:left;margin-bottom:100px;"&gt
+    &ltasp:HyperLink ID="Home" runat="server" Height="50px" Width="200px" ImageUrl="img/home.png" NavigateUrl="finalproject.html"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="SelectLink" runat="server" Height="50px" Width="200px" ImageUrl="img/select.png" NavigateUrl="Select.aspx"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="InsertLink" runat="server" Height="50px" Width="200px" ImageUrl="img/insert.png" NavigateUrl="Insert.aspx"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="DeleteLink" runat="server" Height="50px" Width="200px" ImageUrl="img/delete.png" NavigateUrl="Delete.aspx"&gt&lt/asp:HyperLink&gt
+    &ltasp:HyperLink ID="UpdateLink" runat="server" Height="50px" Width="200px" ImageUrl="img/update.png" NavigateUrl="Update.aspx"&gt&lt/asp:HyperLink&gt
+    &lt/div&gt
+    &ltdiv id="Div1" style="height:500px;width:700px;float:left;margin-bottom:100px;"&gt
+    &lt%-- Use "nova" instead of "acad" --%&gt
+    Sales Table:
+    &ltasp:SqlDataSource ID="selectSales" runat="server" 
+        ConnectionString="Data Source=nova;Persist Security Info=True;User ID=#######;Password=#######;Unicode=True" 
+        providerName="System.Data.OracleClient" 
+        SelectCommand="SELECT * FROM SALE ORDER BY SALEID"&gt
+    &lt/asp:SqlDataSource&gt
+
+    &ltasp:GridView ID="GridView1" runat="server" AutoGenerateColumns="False" 
+        DataKeyNames="SALEID" DataSourceID="selectSales"
+        EnableModelValidation="True"  
+        style="margin-bottom: 0px" BackColor="White" BorderColor="#CCCCCC" 
+        BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" 
+        GridLines="Horizontal" Width="1400px"&gt
+        &ltColumns&gt
+            &ltasp:BoundField DataField="SALEID" HeaderText="SALE ID" ReadOnly="True" 
+                SortExpression="SALEID" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="CUSTOMERID" HeaderText="CUSTOMER ID" 
+                SortExpression="CUSTOMERID" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="SALE_DATE" HeaderText="SALE DATE" 
+                SortExpression="SALE_DATE" HtmlEncode="False" ReadOnly="True" 
+                DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="HOMEID" HeaderText="HOME ID" 
+                SortExpression="HOMEID" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="CONTRACTID" HeaderText="CONTRACT ID" 
+                SortExpression="CONTRACTID" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="ACTUAL_AMOUNT" HeaderText="ACTUAL AMOUNT" 
+                SortExpression="ACTUAL_AMOUNT" ReadOnly="True" DataFormatString="{0:C}" 
+                HtmlEncode="False" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="AGENTID" HeaderText="AGENT ID" 
+                SortExpression="AGENTID" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+        &lt/Columns&gt
+        &ltFooterStyle BackColor="#CCCC99" ForeColor="Black" /&gt
+        &ltHeaderStyle BackColor="#CC6600" Font-Bold="True" ForeColor="White" /&gt
+        &ltPagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" /&gt
+        &ltSelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" /&gt
+    &lt/asp:GridView&gt  &ltbr /&gt
+
+    Home Table:
+    &ltasp:SqlDataSource ID="selectHome" runat="server" 
+        ConnectionString="Data Source=nova;Persist Security Info=True;User ID=#######;Password=#######;Unicode=True" 
+        providerName="System.Data.OracleClient" 
+        SelectCommand="SELECT * FROM HOME ORDER BY HOMEID"&gt
+    &lt/asp:SqlDataSource&gt
+
+    &ltasp:GridView ID="GridView2" runat="server" AutoGenerateColumns="False" 
+        DataKeyNames="HOMEID" DataSourceID="selectHome"
+        EnableModelValidation="True"  
+        style="margin-bottom: 0px" BackColor="White" BorderColor="#CCCCCC" 
+        BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" 
+        GridLines="Horizontal" Width="1400px"&gt
+        &ltColumns&gt
+            &ltasp:BoundField DataField="HOMEID" HeaderText="HOME ID" ReadOnly="True" 
+                SortExpression="HOME ID" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="LOT_SIZE" HeaderText="LOT SIZE" 
+                SortExpression="LOT_SIZE" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="LOCATION" HeaderText="LOCATION" 
+                SortExpression="LOCATION" HtmlEncode="False" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="MODELID" HeaderText="MODEL ID" 
+                SortExpression="MODELID" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="PURCHASE_PRICE" HeaderText="PURCHASE PRICE" 
+                SortExpression="PRCHASE_PRICE" ReadOnly="True" DataFormatString="{0:C}" 
+                HtmlEncode="False" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="STREET_ADDRESS" HeaderText="STREET ADDRESS" 
+                SortExpression="STREET_ADDRESS" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="CITY" HeaderText="CITY" 
+                SortExpression="CITY" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="STATE_ABB" HeaderText="STATE ABBR." 
+            SortExpression="STATE_ABB" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="ZIPCODE" HeaderText="ZIPCODE" 
+                SortExpression="ZIPCODE" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+        &lt/Columns&gt
+        &ltFooterStyle BackColor="#CCCC99" ForeColor="Black" /&gt
+        &ltHeaderStyle BackColor="#CC6600" Font-Bold="True" ForeColor="White" /&gt
+        &ltPagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" /&gt
+        &ltSelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" /&gt
+    &lt/asp:GridView&gt  &ltbr /&gt
+
+    Customer Table:
+    &ltasp:SqlDataSource ID="selectCustomer" runat="server" 
+        ConnectionString="Data Source=nova;Persist Security Info=True;User ID=#######;Password=#######;Unicode=True" 
+        providerName="System.Data.OracleClient" 
+        SelectCommand="SELECT * FROM CUSTOMER ORDER BY CUSTOMERID"&gt
+    &lt/asp:SqlDataSource&gt
+
+    &ltasp:GridView ID="GridView3" runat="server" AutoGenerateColumns="False" 
+        DataKeyNames="CUSTOMERID" DataSourceID="selectCustomer"  
+        style="margin-bottom: 0px" BackColor="White" BorderColor="#CCCCCC" 
+        BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" 
+        GridLines="Horizontal" Width="1400px" &gt
+        &ltColumns&gt
+            &ltasp:BoundField DataField="CUSTOMERID" HeaderText="CUSTOMER ID" ReadOnly="True" 
+                SortExpression="CUSTOMER ID" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="LAST_NAME" HeaderText="LAST NAME" 
+                SortExpression="LAST_NAME" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="FIRST_NAME" HeaderText="FIRST NAME" 
+                SortExpression="FIRST_NAME" HtmlEncode="False" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="MIDDLE_INITAL" HeaderText="MIDDLE INITIAL" 
+                SortExpression="MIDDLE_INITAL" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="CELL_PHONE" HeaderText="CELL PHONE" 
+                SortExpression="CELL_PHONE" ReadOnly="True" DataFormatString="{0:(###) ###-####}"
+                HtmlEncode="False" ItemStyle-Width="150" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="HOME_PHONE" HeaderText="HOME PHONE" 
+            SortExpression="HOME_PHONE" ReadOnly="True" DataFormatString="{0:(###) ###-####}"
+            HtmlEncode="False" ItemStyle-Width="150" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="STREET_ADDRESS" HeaderText="STREET ADDRESS" 
+                SortExpression="STREET_ADDRESS" ReadOnly="True" ItemStyle-Width="200" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="CITY" HeaderText="CITY" 
+                SortExpression="CITY" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="STATE_ABB" HeaderText="STATE ABBR." 
+            SortExpression="STATE_ABB" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="ZIPCODE" HeaderText="ZIPCODE" 
+                SortExpression="ZIPCODE" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="PROFESSION" HeaderText="PROFESSION" 
+                SortExpression="PROFESSION" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="AGENTID" HeaderText="AGENT ID" 
+                SortExpression="AGENTID" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="DOB" HeaderText="DATE OF BIRTH" 
+                SortExpression="DOB" HtmlEncode="False" ReadOnly="True" 
+                DataFormatString="{0:d}" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="REFERRER" HeaderText="REFERRER" 
+                SortExpression="REFERRER" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+        &lt/Columns&gt
+        &ltFooterStyle BackColor="#CCCC99" ForeColor="Black" /&gt
+        &ltHeaderStyle BackColor="#CC6600" Font-Bold="True" ForeColor="White" /&gt
+        &ltPagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" /&gt
+        &ltSelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" /&gt
+    &lt/asp:GridView&gt  &ltbr /&gt
+
+    Agent Table:
+    &ltasp:SqlDataSource ID="selectAgent" runat="server" 
+        ConnectionString="Data Source=nova;Persist Security Info=True;User ID=#######;Password=#######;Unicode=True" 
+        providerName="System.Data.OracleClient" 
+        SelectCommand="SELECT * FROM AGENT ORDER BY AGENTID" &gt
+    &lt/asp:SqlDataSource&gt
+
+    &ltasp:GridView ID="GridView4" runat="server" AutoGenerateColumns="False" 
+        DataKeyNames="AGENTID" DataSourceID="selectAgent"  
+        style="margin-bottom: 0px" BackColor="White" BorderColor="#CCCCCC" 
+        BorderStyle="None" BorderWidth="1px" CellPadding="4" ForeColor="Black" 
+        GridLines="Horizontal" Width="1400px" &gt
+        &ltColumns&gt
+            &ltasp:BoundField DataField="AGENTID" HeaderText="AGENT ID" ReadOnly="True" 
+                SortExpression="AGENTID" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="LAST_NAME" HeaderText="LAST NAME" 
+                SortExpression="LAST_NAME" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="FIRST_NAME" HeaderText="FIRST NAME" 
+                SortExpression="FIRST_NAME" HtmlEncode="False" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="MIDDLE_INITAL" HeaderText="MIDDLE INITIAL" 
+                SortExpression="MIDDLE_INITAL" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="CELL_PHONE" HeaderText="CELL PHONE" 
+                SortExpression="CELL_PHONE" ReadOnly="True" DataFormatString="{0:(###) ###-####}"
+                HtmlEncode="False" ItemStyle-Width="150" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="HOME_PHONE" HeaderText="HOME PHONE" 
+            SortExpression="HOME_PHONE" ReadOnly="True" DataFormatString="{0:(###) ###-####}"
+            HtmlEncode="False" ItemStyle-Width="150" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="OFFICE_PHONE" HeaderText="OFFICE PHONE" 
+                SortExpression="OFFICE_PHONE" ReadOnly="True" DataFormatString="{0:(###) ###-####}" 
+                HtmlEncode="False" ItemStyle-Width="150" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="PAGER" HeaderText="PAGER" 
+                SortExpression="PAGER" ReadOnly="True" DataFormatString="{0:(###) ###-####}"
+                HtmlEncode="False" ItemStyle-Width="150" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="HIREDATE" HeaderText="HIRE DATE" 
+                SortExpression="HIREDATE" HtmlEncode="False" ReadOnly="True" 
+                DataFormatString="{0:d}" ItemStyle-Width="200" ItemStyle-HorizontalAlign="Center"/&gt
+            &ltasp:BoundField DataField="TITLE" HeaderText="TITLE" 
+                SortExpression="TITLE" ReadOnly="True" ItemStyle-HorizontalAlign="Center"/&gt
+        &lt/Columns&gt
+        &ltFooterStyle BackColor="#CCCC99" ForeColor="Black" /&gt
+        &ltHeaderStyle BackColor="#CC6600" Font-Bold="True" ForeColor="White" /&gt
+        &ltPagerStyle BackColor="White" ForeColor="Black" HorizontalAlign="Right" /&gt
+        &ltSelectedRowStyle BackColor="#CC3333" Font-Bold="True" ForeColor="White" /&gt
+    &lt/asp:GridView&gt  &ltbr /&gt
+
+    &lt/div&gt
+    &lt/form&gt
+&lt/body&gt
+&lt/html&gt
+
+
+</pre>
+</body>
+</html>

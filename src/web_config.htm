@@ -1,0 +1,68 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Web.config</title>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shCore.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shBrushXml.js"></script>
+    <script type="text/javascript" src="../syntaxhighlighter/scripts/shBrushJava.js"></script>
+    <link type="text/css" rel="Stylesheet" href="../syntaxhighlighter/styles/shCore.css" />
+    <link type="text/css" rel="Stylesheet" href="../syntaxhighlighter/styles/shThemeDefault.css" />
+</head>
+<body>
+<script type="text/javascript">    SyntaxHighlighter.all(); </script>
+<pre class="brush:xml;">
+&lt?xml version="1.0"?&gt
+&lt!-- 
+    Note: As an alternative to hand editing this file you can use the 
+    web admin tool to configure settings for your application. Use
+    the Website-&gtAsp.Net Configuration option in Visual Studio.
+    A full list of settings and comments can be found in 
+    machine.config.comments usually located in 
+    \Windows\Microsoft.Net\Framework\vx.x\Config 
+--&gt
+&ltconfiguration&gt
+  &ltappSettings/&gt
+  &ltconnectionStrings&gt
+    &ltadd name="acad" connectionString="Data Source=acad;Persist Security Info=True;User ID=#######;Password=#######;Unicode=True" providerName="System.Data.OracleClient"/&gt
+    &ltadd name="ConnectionString" connectionString="Data Source=acad;Persist Security Info=True;User ID=#######;Password=#######;Unicode=True" providerName="System.Data.OracleClient"/&gt
+  &lt/connectionStrings&gt
+  &ltsystem.web&gt
+    &lt!-- 
+            Set compilation debug="true" to insert debugging 
+            symbols into the compiled page. Because this 
+            affects performance, set this value to true only 
+            during development.
+        --&gt
+    &ltcompilation debug="false" targetFramework="4.0"&gt
+      &ltassemblies&gt
+        &ltadd assembly="System.Data.OracleClient, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089"/&gt
+      &lt/assemblies&gt
+    &lt/compilation&gt
+    &lt!--
+            The &ltauthentication&gt section enables configuration 
+            of the security authentication mode used by 
+            ASP.NET to identify an incoming user. 
+        --&gt
+    &lt!--
+            The &ltcustomErrors&gt section enables configuration 
+            of what to do if/when an unhandled error occurs 
+            during the execution of a request. Specifically, 
+            it enables developers to configure html error pages 
+            to be displayed in place of a error stack trace.
+      --&gt
+    &ltcustomErrors mode="RemoteOnly" defaultRedirect="AppErrors.aspx"&gt
+      &lterror statusCode="403" redirect="NoAccessAllowed.aspx"/&gt
+     &lterror statusCode="404" redirect="NoSuchPage.aspx"/&gt
+    &lt/customErrors&gt
+  &lt/system.web&gt
+  &lt!-- 
+        The system.webServer section is required for running ASP.NET AJAX under Internet
+        Information Services 7.0.  It is not necessary for previous version of IIS.
+    --&gt
+&lt/configuration&gt
+
+
+</pre>
+</body>
+</html>
